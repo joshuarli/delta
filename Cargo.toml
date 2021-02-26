@@ -1,3 +1,5 @@
+cargo-features = ["strip"]
+
 [package]
 name = "git-delta"
 authors = ["Dan Davison <dandavison7@gmail.com>"]
@@ -13,6 +15,12 @@ version = "0.7.1"
 [[bin]]
 name = "delta"
 path = "src/main.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
 
 [dependencies]
 ansi_colours = "1.0.1"
